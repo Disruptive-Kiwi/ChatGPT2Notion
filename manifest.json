@@ -10,7 +10,6 @@
     "128": "images/icon-128.png"
   },
   "action": {
-    // "default_popup": "hello.html",
     "default_icon": {
       "16": "images/icon-16.png",
       "32": "images/icon-32.png",
@@ -23,18 +22,19 @@
   },
   "permissions": ["activeTab", "scripting"],
   "commands": {
-    "_execute_action": {
+    "save_to_notion": {
       "suggested_key": {
-        "default": "Ctrl+B",
-        "mac": "Command+B"
-      }
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Save current chat to Notion"
     }
-  },
-  "content_scripts": [
-    {
-      "matches": ["https://chat.openai.com/*"],
-      // "css": ["my-styles.css"],
-      "js": ["content-script.js"]
-    }
-  ]
+  }
+  // "content_scripts": [
+  //   {
+  //     "matches": ["https://chat.openai.com/*"],
+  //     // "css": ["my-styles.css"],
+  //     "js": ["content-script.js"]
+  //   }
+  // ]
 }

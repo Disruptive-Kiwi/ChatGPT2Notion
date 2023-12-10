@@ -1,10 +1,8 @@
 console.log("This is a content script running in the page.");
-const webhookURL = "https://hook.us1.make.com/fmfxtlim2hud7igx61t0rd5hwdi3maog";
 
 // Function for building chat name, transcript and saving to Notion
 const saveToNotion = () => {
-  //disable savebtn
-  saveBtn.setAttribute("disabled", "disabled");
+  const webhookURL = "https://hook.us1.make.com/fmfxtlim2hud7igx61t0rd5hwdi3maog";
 
   let chatName = "New chat";
   let transcript = "";
@@ -39,12 +37,12 @@ const saveToNotion = () => {
     .then((response) => response.text())
     .then((text) => {
       console.log("Webhook response:", text);
-      //enable savebtn
-      saveBtn.removeAttribute("disabled");
     });
 };
 
-// Create save button
+saveToNotion();
+
+/* // Create save button
 const saveBtn = document.createElement("div");
 saveBtn.appendChild(document.createTextNode("💾"));
 saveBtn.setAttribute(
@@ -54,10 +52,12 @@ saveBtn.setAttribute(
 saveBtn.setAttribute("style", "cursor: pointer;");
 saveBtn.setAttribute("title", "Save to Notion");
 saveBtn.onclick = saveToNotion;
+ */
 
-// For adding save button to the ChatGPT interface
+/* // For adding save button to the ChatGPT interface
 setTimeout(() => {
-  const chatHeader = document.querySelectorAll("div.sticky")[0];
+  const chatHeader = Array.from(document.querySelectorAll("div.sticky")).reverse()[0];
+
   if (chatHeader) {
     for (const child of chatHeader.children) {
       if (child.innerText.toLowerCase().includes("chatgpt")) {
@@ -67,6 +67,10 @@ setTimeout(() => {
   } else {
     console.error("Could not find chat header");
   }
+
+  window.addEventListener('popstate', function (event) {
+    console.log('location changed!, event');
+  });
 
   // Work on visibility change as expected
   document.onvisibilitychange = function () {
@@ -80,9 +84,13 @@ setTimeout(() => {
   //   console.log("Logged this as the user moved away from the page.");
   // });
 }, 5000);
-
+ */
 
 /* TODO
+Initiate save to Notion by clicking extension button - 
+- Got extension clicking working but now gotta connect it to the saveToNotion function
+Add shortcut to save to Notion - not being able to see any response from shortcuts
+Save button disappears when a new chat kicks off - additional messages to that chat don't have this problem
 Save button disappears on switching between chats
 Figure out if a chat has been previously saved in Notion
 Figure out how to append update to a chat / replace the chat with the updated one 
