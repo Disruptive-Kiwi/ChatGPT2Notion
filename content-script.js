@@ -1,8 +1,9 @@
 console.log("This is a content script running in the page.");
 
 // Function for building chat name, transcript and saving to Notion
-const saveToNotion = () => {
-  const webhookURL = "https://hook.us1.make.com/fmfxtlim2hud7igx61t0rd5hwdi3maog";
+(() => {
+  const webhookURL =
+    "https://hook.us1.make.com/fmfxtlim2hud7igx61t0rd5hwdi3maog";
 
   let chatName = "New chat";
   let transcript = "";
@@ -37,10 +38,16 @@ const saveToNotion = () => {
     .then((response) => response.text())
     .then((text) => {
       console.log("Webhook response:", text);
+      chrome.runtime.sendMessage({
+        type: "set_badge",
+        options: {
+          response: text.toLowerCase(),
+          chatName,
+        },
+      });
+      console.log("Message sent to service worker");
     });
-};
-
-saveToNotion();
+})();
 
 /* // Create save button
 const saveBtn = document.createElement("div");
@@ -87,11 +94,11 @@ setTimeout(() => {
  */
 
 /* TODO
-Initiate save to Notion by clicking extension button - 
-- Got extension clicking working but now gotta connect it to the saveToNotion function
+DONE - Initiate save to Notion by clicking extension button
+DONE - Add a way of showing that chat has been successfuly saved to Notion - through a badge
+Figure out if a chat has been previously saved in Notion
+Figure out how to append update to a chat / replace the chat with the updated one 
 Add shortcut to save to Notion - not being able to see any response from shortcuts
 Save button disappears when a new chat kicks off - additional messages to that chat don't have this problem
 Save button disappears on switching between chats
-Figure out if a chat has been previously saved in Notion
-Figure out how to append update to a chat / replace the chat with the updated one 
 */

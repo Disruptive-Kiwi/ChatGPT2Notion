@@ -30,11 +30,4 @@
       "description": "Save current chat to Notion"
     }
   }
-  // "content_scripts": [
-  //   {
-  //     "matches": ["https://chat.openai.com/*"],
-  //     // "css": ["my-styles.css"],
-  //     "js": ["content-script.js"]
-  //   }
-  // ]
 }

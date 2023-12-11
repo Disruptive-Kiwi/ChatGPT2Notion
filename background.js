@@ -4,6 +4,29 @@ chrome.commands.onCommand.addListener((command) => {
   console.log(`Command: ${command}`);
 });
 
+chrome.runtime.onMessage.addListener(data => {
+  console.log('Received message in service worked', data);
+  if(data.type === 'set_badge') {
+    const color = data.options.response === 'accepted' ? [0, 255, 0, 0] : [255, 0, 0, 0]
+    const text = data.options.response === 'accepted' ? '🤙🏼' : '❌'
+    
+    chrome.action.setBadgeBackgroundColor({color});
+    chrome.action.setBadgeText({text},
+      () => { 
+        console.log('Badge set')
+        setTimeout(() => {
+          chrome.action.setBadgeText(
+            {
+              text: "",
+            },
+            () => { console.log('Badge cleared') },
+          );
+        }, 5000);
+      }
+    );
+  }
+});
+
 chrome.action.onClicked.addListener(async (tab) => {
   if(tab.url.startsWith(matchUrl)) {
     console.log('Extension clicked')
