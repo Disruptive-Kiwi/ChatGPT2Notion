@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ChatGPT2Notion",
-  "description": "Base Level Extension",
+  "description": "Extension for saving any ChatGPT chats to Notion with one click",
   "version": "1.0",
   "icons": {
     "16": "images/icon-16.png",

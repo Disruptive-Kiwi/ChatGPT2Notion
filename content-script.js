@@ -7,7 +7,9 @@ console.log("This is a content script running in the page.");
 
   let chatName = "New chat";
   let transcript = "";
-
+  const currentUrl = window.location.href;
+  console.log(`currentUrl: ${currentUrl}`);
+ 
   document.querySelectorAll("li[data-projection-id]").forEach((node) => {
     if (node.querySelector("button")) {
       // console.log('Looks like chat name is', node.querySelector('a').innerText)
@@ -33,6 +35,7 @@ console.log("This is a content script running in the page.");
     body: JSON.stringify({
       name: chatName,
       transcript,
+      currentUrl,
     }),
   })
     .then((response) => response.text())
@@ -96,8 +99,9 @@ setTimeout(() => {
 /* TODO
 DONE - Initiate save to Notion by clicking extension button
 DONE - Add a way of showing that chat has been successfuly saved to Notion - through a badge
-Figure out if a chat has been previously saved in Notion
+Figure out if a chat has been previously saved in Notion - might need to connect to Notion for this
 Figure out how to append update to a chat / replace the chat with the updated one 
+Tables don't make it across very nicely - need to figure out how to format them
 Add shortcut to save to Notion - not being able to see any response from shortcuts
 Save button disappears when a new chat kicks off - additional messages to that chat don't have this problem
 Save button disappears on switching between chats
