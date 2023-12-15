@@ -7,7 +7,7 @@ chrome.commands.onCommand.addListener((command) => {
 chrome.runtime.onMessage.addListener(data => {
   console.log('Received message in service worked', data);
   if(data.type === 'set_badge') {
-    const color = data.options.response === 'accepted' ? [0, 255, 0, 0] : [255, 0, 0, 0]
+    const color = data.options.response === 'accepted' ? 'green' : 'black'
     const text = data.options.response === 'accepted' ? '🤙🏼' : '❌'
     
     chrome.action.setBadgeBackgroundColor({color});
