@@ -2,7 +2,7 @@
 
 A free Chrome extension to help you save your ChatGPT chats into your Notion database with one click.
 
-![](./demo.gif)
+![](./chatgpt2notion_demo.gif)
 
 ## Setup
 
