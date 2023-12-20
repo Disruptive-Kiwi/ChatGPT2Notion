@@ -2,8 +2,7 @@ console.log("This is a content script running in the page.");
 
 // Function for building chat name, transcript and saving to Notion
 (() => {
-  const webhookURL =
-    "https://hook.us1.make.com/fmfxtlim2hud7igx61t0rd5hwdi3maog"; 
+  const webhookURL = "YOUR_WEBHOOK_URL_HERE";
   // STARTERCONF: REPLACE ☝🏼 THIS WITH YOUR OWN WEBHOOK URL
 
   let chatName = "New chat";
